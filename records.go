@@ -19,11 +19,11 @@ type RecordResponse struct {
 	Host             *string `json:"host"`
 	Record           *string `json:"record"`
 	TTL              *string `json:"ttl"`
-	Priority         *int    `json:"priority"`
-	Weight           *int    `json:"weight,omitempty"`
-	Port             *int    `json:"port,omitempty"`
+	Priority         *string `json:"priority"`
+	Weight           *string `json:"weight,omitempty"`
+	Port             *string `json:"port,omitempty"`
 	DynamicUrlStatus *int    `json:"dynamicurl_status"`
-	Failover         *int    `json:"failover"`
+	Failover         *string `json:"failover"`
 	Status           *int    `json:"status"`
 }
 
@@ -45,6 +45,8 @@ type Record struct {
 	Record           *string `json:"record"`
 	DynamicUrlStatus *int    `json:"dynamicurl_status"`
 	Priority         *string `json:"priority"`
+	Weight           *string `json:"weight"`
+	Port             *string `json:"port"`
 	Failover         *string `json:"failover"`
 	TTL              *string `json:"ttl"`
 	Status           *int    `json:"status"`
@@ -71,10 +73,10 @@ type AddRecordParams struct {
 	RecordType *string `json:"record-type" validate:"required,record_types"`
 	Host       *string `json:"host" validate:"required"`
 	Record     *string `json:"record" validate:"required"`
-	TTL        *int    `json:"ttl,omitempty" validate:"required,ttl"`
-	Priority   *int    `json:"priority,omitempty" validate:"omitempty,priority"`
-	Weight     *int    `json:"weight,omitempty" validate:"omitempty,weight"`
-	Port       *int    `json:"port,omitempty" validate:"omitempty,port"`
+	TTL        *string `json:"ttl,omitempty" validate:"required,ttl"`
+	Priority   *string `json:"priority,omitempty" validate:"omitempty,priority"`
+	Weight     *string `json:"weight,omitempty" validate:"omitempty,weight"`
+	Port       *string `json:"port,omitempty" validate:"omitempty,port"`
 }
 
 /*

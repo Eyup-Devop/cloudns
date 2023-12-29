@@ -8,8 +8,8 @@ import (
 )
 
 var (
-	authId       *string = cloudns.String("*****")
-	authPassword *string = cloudns.String("**********")
+	authId       *string = cloudns.String("****")
+	authPassword *string = cloudns.String("************")
 )
 
 func TestGetRecordsStatistics(t *testing.T) {
@@ -24,8 +24,8 @@ func TestGetRecord(t *testing.T) {
 	cloudns.AuthId = authId
 	cloudns.AuthPassword = authPassword
 	params := &cloudns.RecordParams{
-		DomainName: cloudns.String("pacificbanyo.com"),
-		RecordId:   cloudns.Int(351698684),
+		DomainName: cloudns.String("hedgus.com"),
+		RecordId:   cloudns.Int(415185328),
 	}
 	response, err := GetRecord(params)
 	assert.Nil(t, err)
@@ -61,11 +61,14 @@ func TestAddRecord(t *testing.T) {
 	cloudns.AuthId = authId
 	cloudns.AuthPassword = authPassword
 	params := &cloudns.AddRecordParams{
-		DomainName: cloudns.String("hedgus1.com"),
-		RecordType: cloudns.String("A"),
-		Host:       cloudns.String(""),
-		Record:     cloudns.String("10.0.0.3"),
-		TTL:        cloudns.Int(60),
+		DomainName: cloudns.String("hedgus.com"),
+		RecordType: cloudns.String("SRV"),
+		Host:       cloudns.String("_service._protocol"),
+		Record:     cloudns.String("alias.hedgus.com"),
+		Priority:   cloudns.String("10"),
+		Weight:     cloudns.String("20"),
+		Port:       cloudns.String("80"),
+		TTL:        cloudns.String("60"),
 	}
 	response, err := AddRecord(params)
 	assert.Nil(t, err)

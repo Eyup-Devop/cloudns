@@ -95,26 +95,26 @@ func OrderBy(fl validator.FieldLevel) bool {
 }
 
 func Ttl(fl validator.FieldLevel) bool {
-	value := fmt.Sprintf("%d", fl.Field().Int())
+	value := fl.Field().String() // fmt.Sprintf("%d", fl.Field().Int())
 	ttl := []string{"60", "300", "900", "1800", "3600", "21600", "43200", "86400", "172800", "259200", "604800", "1209600", "2592000"}
 
 	return slices.Contains(ttl, value)
 }
 
 func Priority(fl validator.FieldLevel) bool {
-	if fl.Parent().FieldByName("Type").Elem().String() == "MX" ||
-		fl.Parent().FieldByName("Type").Elem().String() == "SRV" {
+	if fl.Parent().FieldByName("RecordType").Elem().String() == "MX" ||
+		fl.Parent().FieldByName("RecordType").Elem().String() == "SRV" {
 		return true
 	}
 	return false
 }
 
 func Weight(fl validator.FieldLevel) bool {
-	return fl.Parent().FieldByName("Type").Elem().String() == "SRV"
+	return fl.Parent().FieldByName("RecordType").Elem().String() == "SRV"
 }
 
 func Port(fl validator.FieldLevel) bool {
-	return fl.Parent().FieldByName("Type").Elem().String() == "SRV"
+	return fl.Parent().FieldByName("RecordType").Elem().String() == "SRV"
 }
 
 func RegisterValidationErrors(trans ut.Translator) {
