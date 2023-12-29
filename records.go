@@ -63,18 +63,15 @@ type RecordsPagesCountParams struct {
 }
 
 type AddRecordParams struct {
-	auth.Auth   `json:",inline"`
-	DomainName  *string `json:"domain-name" validate:"required"`
-	RecordType  *string `json:"record-type" validate:"required,record_types"`
-	Host        *string `json:"host" validate:"required"`
-	Record      *string `json:"record" validate:"required"`
-	TTL         *int    `json:"ttl,omitempty" validate:"required,ttl"`
-	Priority    *int    `json:"priority,omitempty" validate:"omitempty,priority"`
-	Weight      *int    `json:"weight,omitempty" validate:"omitempty,weight"`
-	Port        *int    `json:"port,omitempty" validate:"omitempty,port"`
-	Failover    *int    `json:"failover,omitempty"`
-	DynamicUrl  *int    `json:"dynamicurl,omitempty"`
-	DynamicUrlT *string `json:"dynamicurl_t,omitempty"`
+	auth.Auth  `json:",inline"`
+	DomainName *string `json:"domain-name" validate:"required"`
+	RecordType *string `json:"record-type" validate:"required,record_types"`
+	Host       *string `json:"host" validate:"required"`
+	Record     *string `json:"record" validate:"required"`
+	TTL        *int    `json:"ttl,omitempty" validate:"required,ttl"`
+	Priority   *int    `json:"priority,omitempty" validate:"omitempty,priority"`
+	Weight     *int    `json:"weight,omitempty" validate:"omitempty,weight"`
+	Port       *int    `json:"port,omitempty" validate:"omitempty,port"`
 }
 
 /*
