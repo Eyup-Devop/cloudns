@@ -18,9 +18,12 @@ type RecordResponse struct {
 	Type             *string `json:"type"`
 	Host             *string `json:"host"`
 	Record           *string `json:"record"`
+	TTL              *string `json:"ttl"`
+	Priority         *int    `json:"priority"`
+	Weight           *int    `json:"weight,omitempty"`
+	Port             *int    `json:"port,omitempty"`
 	DynamicUrlStatus *int    `json:"dynamicurl_status"`
 	Failover         *int    `json:"failover"`
-	TTL              *string `json:"ttl"`
 	Status           *int    `json:"status"`
 }
 
