@@ -74,3 +74,33 @@ func TestAddRecord(t *testing.T) {
 	assert.Nil(t, err)
 	assert.NotNil(t, response)
 }
+
+func TestDeleteRecord(t *testing.T) {
+	cloudns.AuthId = authId
+	cloudns.AuthPassword = authPassword
+	params := &cloudns.DeleteRecordParams{
+		DomainName: cloudns.String("hedgus.com"),
+		RecordId:   cloudns.String("222222222"),
+	}
+	response, err := DeleteRecord(params)
+	assert.Nil(t, err)
+	assert.NotNil(t, response)
+}
+
+func TestModifyRecord(t *testing.T) {
+	cloudns.AuthId = authId
+	cloudns.AuthPassword = authPassword
+	params := &cloudns.ModifyRecordParams{
+		DomainName: cloudns.String("hedgus.com"),
+		RecordId:   cloudns.String("22222222"),
+		Host:       cloudns.String("_service._protocol"),
+		Record:     cloudns.String("alias.hedgus.com"),
+		Priority:   cloudns.String("30"),
+		Weight:     cloudns.String("20"),
+		Port:       cloudns.String("80"),
+		TTL:        cloudns.String("60"),
+	}
+	response, err := ModifyRecord(params)
+	assert.Nil(t, err)
+	assert.NotNil(t, response)
+}

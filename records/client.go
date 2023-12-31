@@ -106,6 +106,34 @@ func (c Client) AddRecord(params *cloudns.AddRecordParams) (*cloudns.AddRecordRe
 	return response, err
 }
 
+func DeleteRecord(params *cloudns.DeleteRecordParams) (*cloudns.DeleteRecordResponse, error) {
+	return getC().DeleteRecord(params)
+}
+
+func (c Client) DeleteRecord(params *cloudns.DeleteRecordParams) (*cloudns.DeleteRecordResponse, error) {
+	validateError := cloudns.ValidateParams(params)
+	if validateError != nil {
+		return nil, errors.New(strings.Join(validateError, ","))
+	}
+	response := &cloudns.DeleteRecordResponse{}
+	err := c.B.Call(http.MethodPost, "/dns/delete-record.json", params, response, false)
+	return response, err
+}
+
+func ModifyRecord(params *cloudns.ModifyRecordParams) (*cloudns.ModifyRecordResponse, error) {
+	return getC().ModifyRecord(params)
+}
+
+func (c Client) ModifyRecord(params *cloudns.ModifyRecordParams) (*cloudns.ModifyRecordResponse, error) {
+	validateError := cloudns.ValidateParams(params)
+	if validateError != nil {
+		return nil, errors.New(strings.Join(validateError, ","))
+	}
+	response := &cloudns.ModifyRecordResponse{}
+	err := c.B.Call(http.MethodPost, "/dns/modify-record.json", params, response, false)
+	return response, err
+}
+
 func getC() Client {
 	return Client{cloudns.GetBackend()}
 }

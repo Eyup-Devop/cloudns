@@ -142,3 +142,31 @@ type AddRecordResponse struct {
 type AddRecordResponseData struct {
 	Id *int `json:"id"`
 }
+
+type DeleteRecordParams struct {
+	auth.Auth  `json:",inline"`
+	DomainName *string `json:"domain-name" validate:"required"`
+	RecordId   *string `json:"record-id" validate:"required"`
+}
+
+type DeleteRecordResponse struct {
+	Status            string `json:"status"`
+	StatusDescription string `json:"statusDescription"`
+}
+
+type ModifyRecordParams struct {
+	auth.Auth  `json:",inline"`
+	DomainName *string `json:"domain-name" validate:"required"`
+	RecordId   *string `json:"record-id" validate:"required"`
+	Host       *string `json:"host" validate:"required"`
+	Record     *string `json:"record" validate:"required"`
+	TTL        *string `json:"ttl,omitempty" validate:"required,ttl"`
+	Priority   *string `json:"priority,omitempty" validate:"omitempty,priority"`
+	Weight     *string `json:"weight,omitempty" validate:"omitempty,weight"`
+	Port       *string `json:"port,omitempty" validate:"omitempty,port"`
+}
+
+type ModifyRecordResponse struct {
+	Status            string `json:"status"`
+	StatusDescription string `json:"statusDescription"`
+}
