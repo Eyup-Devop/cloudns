@@ -130,7 +130,7 @@ func (c Client) ModifyRecord(params *cloudns.ModifyRecordParams) (*cloudns.Modif
 		return nil, errors.New(strings.Join(validateError, ","))
 	}
 	response := &cloudns.ModifyRecordResponse{}
-	err := c.B.Call(http.MethodPost, "/dns/modify-record.json", params, response, false)
+	err := c.B.Call(http.MethodPost, "/dns/mod-record.json", params, response, false)
 	return response, err
 }
 
