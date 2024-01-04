@@ -25,7 +25,7 @@ func TestGetRecord(t *testing.T) {
 	cloudns.AuthPassword = authPassword
 	params := &cloudns.RecordParams{
 		DomainName: cloudns.String("hedgus.com"),
-		RecordId:   cloudns.String("415185328"),
+		RecordId:   cloudns.Int(415185328),
 	}
 	response, err := GetRecord(params)
 	assert.Nil(t, err)

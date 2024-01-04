@@ -10,7 +10,7 @@ type RecordsStatisticsResponse struct {
 type RecordParams struct {
 	auth.Auth  `json:",inline"`
 	DomainName *string `json:"domain-name" validate:"required"`
-	RecordId   *string `json:"record-id" validate:"required"`
+	RecordId   *int    `json:"record-id" validate:"required"`
 }
 
 type RecordResponse struct {
