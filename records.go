@@ -140,7 +140,7 @@ type AddRecordResponse struct {
 }
 
 type AddRecordResponseData struct {
-	Id *int `json:"id"`
+	Id *string `json:"id"`
 }
 
 type DeleteRecordParams struct {
