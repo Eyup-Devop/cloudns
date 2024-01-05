@@ -102,7 +102,8 @@ func Ttl(fl validator.FieldLevel) bool {
 }
 
 func Priority(fl validator.FieldLevel) bool {
-	if fl.Parent().FieldByName("RecordType").Elem().String() == "MX" ||
+	if fl.Parent().FieldByName("RecordType").Elem().IsNil() ||
+		fl.Parent().FieldByName("RecordType").Elem().String() == "MX" ||
 		fl.Parent().FieldByName("RecordType").Elem().String() == "SRV" {
 		return true
 	}
@@ -110,10 +111,16 @@ func Priority(fl validator.FieldLevel) bool {
 }
 
 func Weight(fl validator.FieldLevel) bool {
+	if fl.Parent().FieldByName("RecordType").Elem().IsNil() {
+		return true
+	}
 	return fl.Parent().FieldByName("RecordType").Elem().String() == "SRV"
 }
 
 func Port(fl validator.FieldLevel) bool {
+	if fl.Parent().FieldByName("RecordType").Elem().IsNil() {
+		return true
+	}
 	return fl.Parent().FieldByName("RecordType").Elem().String() == "SRV"
 }
 

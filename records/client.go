@@ -39,16 +39,16 @@ func (c Client) GetRecord(params *cloudns.RecordParams) (*cloudns.RecordResponse
 	return response, err
 }
 
-func GetRecordList(params *cloudns.RecordsListParams) (*cloudns.RecordsListResponse, error) {
+func GetRecordList(params *cloudns.RecordListParams) (*cloudns.RecordListResponse, error) {
 	return getC().GetRecordList(params)
 }
 
-func (c Client) GetRecordList(params *cloudns.RecordsListParams) (*cloudns.RecordsListResponse, error) {
+func (c Client) GetRecordList(params *cloudns.RecordListParams) (*cloudns.RecordListResponse, error) {
 	validateError := cloudns.ValidateParams(params)
 	if validateError != nil {
 		return nil, errors.New(strings.Join(validateError, ","))
 	}
-	result := &cloudns.RecordsListResponse{
+	result := &cloudns.RecordListResponse{
 		Page:        params.Page,
 		RowsPerPage: params.RowsPerPage,
 	}
@@ -72,9 +72,9 @@ func (c Client) GetRecordList(params *cloudns.RecordsListParams) (*cloudns.Recor
 		}
 	}
 
-	recordsList := map[string]*cloudns.Record{}
-	err := c.B.Call(http.MethodPost, "/dns/records.json", params, &recordsList, false)
-	result.Records = recordsList
+	recordList := map[string]*cloudns.Record{}
+	err := c.B.Call(http.MethodPost, "/dns/records.json", params, &recordList, false)
+	result.Records = recordList
 	return result, err
 }
 

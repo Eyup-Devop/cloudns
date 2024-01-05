@@ -35,7 +35,7 @@ func TestGetRecord(t *testing.T) {
 func TestListRecords(t *testing.T) {
 	cloudns.AuthId = authId
 	cloudns.AuthPassword = authPassword
-	params := &cloudns.RecordsListParams{
+	params := &cloudns.RecordListParams{
 		DomainName:  cloudns.String("hedgus.com"),
 		Page:        cloudns.Int(1),
 		RowsPerPage: cloudns.Int(50),

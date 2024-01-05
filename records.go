@@ -27,7 +27,7 @@ type RecordResponse struct {
 	Status           *int    `json:"status"`
 }
 
-type RecordsListParams struct {
+type RecordListParams struct {
 	auth.Auth   `json:",inline"`
 	DomainName  *string `json:"domain-name" validate:"required"`
 	Host        *string `json:"host,omitempty"`
@@ -52,7 +52,7 @@ type Record struct {
 	Status           *int    `json:"status"`
 }
 
-type RecordsListResponse struct {
+type RecordListResponse struct {
 	Page        *int               `json:"page"`
 	RowsPerPage *int               `json:"rows-per-page"`
 	PageCount   *int               `json:"page-count"`
